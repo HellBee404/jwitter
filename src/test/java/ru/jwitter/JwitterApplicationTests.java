@@ -1,10 +1,10 @@
-package ru.hellbee.twitterapicopy;
+package ru.jwitter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TwitterApiCopyApplicationTests {
+class JwitterApplicationTests {
 
     @Test
     void contextLoads() {

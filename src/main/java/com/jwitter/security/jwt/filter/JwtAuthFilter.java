@@ -1,6 +1,6 @@
-package com.hellbee.jwitter.security.jwt.filter;
+package com.jwitter.security.jwt.filter;
 
-import com.hellbee.jwitter.security.jwt.service.JwtService;
+import com.jwitter.security.jwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

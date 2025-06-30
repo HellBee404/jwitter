@@ -1,4 +1,4 @@
-package com.hellbee.jwitter.security.jwt.service;
+package com.jwitter.security.jwt.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

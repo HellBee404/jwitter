@@ -1,7 +1,7 @@
-package com.hellbee.jwitter.security.config;
+package com.jwitter.security.config;
 
-import com.hellbee.jwitter.security.jwt.filter.JwtAuthFilter;
-import com.hellbee.jwitter.security.service.impl.UserDetailsServiceImpl;
+import com.jwitter.security.jwt.filter.JwtAuthFilter;
+import com.jwitter.security.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

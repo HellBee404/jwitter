@@ -1,1 +1,29 @@
-spring.application.name=twitter-api-copy
+spring:
+  application:
+    name: jwitter
+  datasource:
+    url: jdbc:postgresql://localhost:5432/twitter_copy_db
+    username: postgres
+    password: root
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+app:
+  jwt:
+    secret-key: super-secret-key
+    expiration-time: 3600000 # 1 hour

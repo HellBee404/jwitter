@@ -1,4 +1,4 @@
-package com.hellbee.jwitter.user.entity;
+package com.jwitter.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

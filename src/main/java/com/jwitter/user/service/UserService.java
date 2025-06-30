@@ -1,4 +1,4 @@
-package com.hellbee.jwitter.user.service;
+package com.jwitter.user.service;
 
 public interface UserService {
 }

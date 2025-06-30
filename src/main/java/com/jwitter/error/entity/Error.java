@@ -1,4 +1,4 @@
-package com.hellbee.jwitter.error.entity;
+package com.jwitter.error.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;

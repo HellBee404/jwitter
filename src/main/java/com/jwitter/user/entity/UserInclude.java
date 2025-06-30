@@ -1,7 +1,7 @@
-package com.hellbee.jwitter.user.entity;
+package com.jwitter.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hellbee.jwitter.tweet.entity.Tweet;
+import com.jwitter.tweet.entity.Tweet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

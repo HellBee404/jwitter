@@ -1,4 +1,4 @@
-package com.hellbee.jwitter.tweet.entity;
+package com.jwitter.tweet.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;

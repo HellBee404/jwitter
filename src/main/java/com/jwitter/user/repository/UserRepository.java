@@ -1,6 +1,6 @@
-package com.hellbee.jwitter.user.repository;
+package com.jwitter.user.repository;
 
-import com.hellbee.jwitter.user.entity.User;
+import com.jwitter.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
