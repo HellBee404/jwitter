@@ -2,7 +2,7 @@ spring:
   application:
     name: jwitter
   datasource:
-    url: jdbc:postgresql://localhost:5432/twitter_copy_db
+    url: jdbc:postgresql://localhost:5432/jwitter_db
     username: postgres
     password: root
   jpa:

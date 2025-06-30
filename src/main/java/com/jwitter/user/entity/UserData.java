@@ -3,8 +3,6 @@ package com.jwitter.user.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -22,7 +20,6 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserData {
 
-    @Id
     @NotBlank
     @Size(min = 10, max = 30)
     @Column(name = "user_data_id", nullable = false)
@@ -62,9 +59,4 @@ public class UserData {
     @UpdateTimestamp
     @Column(name = "user_data_updated_at")
     private LocalDateTime updatedAt;
-
-    @Embedded
-    @Column(name = "user_public_metrics")
-    private UserPublicMetric userPublicMetrics;
-
 }

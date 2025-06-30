@@ -2,6 +2,8 @@ package com.jwitter.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jwitter.error.entity.Error;
+import com.jwitter.topic.entity.Topic;
+import com.jwitter.tweet.entity.Tweet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,11 +34,19 @@ public class User {
     @Embedded
     private UserData data;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Error> errors;
 
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Tweet> tweets;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Topic> topics;
+
+    //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<UserPublicMetric> userPublicMetrics;
     @Embedded
-    private UserInclude includes;
+    private UserPublicMetric userPublicMetric;
 
     @Column(nullable = false)
     private boolean enabled;

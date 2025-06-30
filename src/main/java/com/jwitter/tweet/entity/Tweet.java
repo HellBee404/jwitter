@@ -1,6 +1,7 @@
 package com.jwitter.tweet.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.jwitter.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,8 +27,9 @@ public class Tweet {
     @Column(name = "tweet_api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
-    @Column(name = "tweet_author_id", unique = true, length = 30)
-    private String authorId;
+    @ManyToOne
+    @JoinColumn(name = "tweet_author", nullable = false)
+    private User author;
 
     @Column(name = "tweet_community_id")
     private String communityId;
@@ -41,7 +43,6 @@ public class Tweet {
     private String language;
 
     @Embedded
-    @Column(name = "tweet_public_metrics")
     private TweetPublicMetric publicMetrics;
 
     @Column(name = "tweet_text")
@@ -49,4 +50,5 @@ public class Tweet {
 
     @Column(name = "tweet_username")
     private String username;
+
 }

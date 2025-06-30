@@ -21,6 +21,9 @@ public class UserCredentials {
     @Column(name = "user_credentials_id")
     private UUID id;
 
+    @Column(name = "user_credentials_api_id", unique = true, nullable = false, length = 30)
+    private String apiId;
+
     @OneToOne
     @JoinColumn(name = "user_id", unique = true, nullable = false)
     private User user;

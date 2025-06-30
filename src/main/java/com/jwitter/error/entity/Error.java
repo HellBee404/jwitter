@@ -1,6 +1,7 @@
 package com.jwitter.error.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.jwitter.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,10 @@ public class Error {
 
     @Column(name = "error_api_id", unique = true, nullable = false, length = 30)
     private String apiId;
+
+    @ManyToOne
+    @JoinColumn(name = "error_user")
+    private User user;
 
     @Column(name = "error_title", nullable = false)
     private String title;
