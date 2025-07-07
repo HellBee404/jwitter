@@ -1,4 +1,4 @@
-package ru.jwitter;
+package com.jwitter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

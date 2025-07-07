@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TweetPublicMetric {
+public class TweetPublicMetrics {
     @Column(name = "tweet_bookmark_count", nullable = false)
     private Integer bookmarkCount;
 

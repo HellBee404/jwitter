@@ -1,6 +1,7 @@
 package com.jwitter.tweet.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.jwitter.shared.entity.BaseEntity;
 import com.jwitter.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,13 +19,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Tweet {
+public class Tweet extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "tweet_internal_id")
     private UUID id;
 
-    @Column(name = "tweet_api_id", unique = true, nullable = false, length = 30)
+    @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
     @ManyToOne
@@ -43,7 +44,7 @@ public class Tweet {
     private String language;
 
     @Embedded
-    private TweetPublicMetric publicMetrics;
+    private TweetPublicMetrics publicMetrics;
 
     @Column(name = "tweet_text")
     private String text;

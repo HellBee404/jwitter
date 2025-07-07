@@ -2,6 +2,7 @@ package com.jwitter.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jwitter.error.entity.Error;
+import com.jwitter.shared.entity.BaseEntity;
 import com.jwitter.topic.entity.Topic;
 import com.jwitter.tweet.entity.Tweet;
 import jakarta.persistence.*;
@@ -16,16 +17,17 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_internal_id")
     private UUID id;
 
-    @Column(name = "user_api_id", unique = true, nullable = false, length = 30)
+    @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,11 +45,10 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Topic> topics;
 
-    //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<UserPublicMetric> userPublicMetrics;
     @Embedded
-    private UserPublicMetric userPublicMetric;
+    private UserPublicMetrics userPublicMetrics;
 
     @Column(nullable = false)
     private boolean enabled;
+
 }

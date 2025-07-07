@@ -24,6 +24,7 @@ logging:
         security: DEBUG
 
 app:
+  worker-id: 5
   jwt:
     secret-key: super-secret-key
     expiration-time: 3600000 # 1 hour

@@ -1,6 +1,7 @@
 package com.jwitter.error.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.jwitter.shared.entity.BaseEntity;
 import com.jwitter.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,13 +16,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Error {
+public class Error extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "error_internal_id")
     private UUID id;
 
-    @Column(name = "error_api_id", unique = true, nullable = false, length = 30)
+    @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
     @ManyToOne
