@@ -30,6 +30,9 @@ public class User extends BaseEntity {
     @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private UserCredentials credentials;
 
@@ -49,6 +52,6 @@ public class User extends BaseEntity {
     private UserPublicMetrics userPublicMetrics;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 
 }

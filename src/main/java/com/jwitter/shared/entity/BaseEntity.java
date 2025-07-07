@@ -4,6 +4,7 @@ import com.jwitter.shared.config.ApplicationContextHolder;
 import com.jwitter.shared.generator.SnowflakeIdGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public abstract class BaseEntity {
     @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
+    @PrePersist
     public void generateApiId() {
         log.debug("Generating apiId for entity");
         if (this.apiId == null) {

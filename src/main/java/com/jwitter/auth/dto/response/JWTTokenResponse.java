@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterStatusResponse {
-    private String status;
+public class JWTTokenResponse {
+    private String token;
 }

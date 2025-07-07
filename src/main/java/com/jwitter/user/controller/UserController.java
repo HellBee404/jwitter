@@ -6,13 +6,17 @@ import com.jwitter.user.mapper.UserMapper;
 import com.jwitter.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_USER')")
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
@@ -24,9 +28,4 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toListResponseDTO(users));
     }
 
-    @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody User user) {
-        userService.save(user);
-        return ResponseEntity.ok(userMapper.toResponseDTO(user));
-    }
 }
