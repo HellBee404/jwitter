@@ -1,5 +1,6 @@
 package com.jwitter.user.entity;
 
+import com.jwitter.shared.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,14 +15,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserCredentials {
+public class UserCredentials extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_credentials_id")
     private UUID id;
 
-    @Column(name = "user_credentials_api_id", unique = true, nullable = false, length = 30)
+    @Column(name = "api_id", unique = true, nullable = false, length = 30)
     private String apiId;
 
     @OneToOne

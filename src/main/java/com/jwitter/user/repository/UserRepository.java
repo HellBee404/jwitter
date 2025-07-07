@@ -12,4 +12,10 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
     @Query("SELECT u FROM User u WHERE u.data.username = :username")
     Optional<User> findByUsername(String username);
+
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.tweets WHERE u.apiId = :apiId")
+    User findByApiIdWithTweets(String apiId);
+
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.data.username WHERE u.data.username = :username")
+    boolean existsByDataUsername(String username);
 }
