@@ -1,5 +1,7 @@
 package com.jwitter.shared.generator;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class SnowflakeIdGenerator {
@@ -10,6 +12,7 @@ public class SnowflakeIdGenerator {
 
     private static final int SEQUENCE_BITS = 12;
 
+    @Value("${app.worker-id}")
     private final int workerId;
     private final AtomicLong lastTimeStamp = new AtomicLong(-1L);
     private final AtomicLong sequence = new AtomicLong(0L);

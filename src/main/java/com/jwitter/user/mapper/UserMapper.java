@@ -38,15 +38,8 @@ public interface UserMapper {
         if (user.getUserPublicMetrics() != null) {
             dto.setPublicMetrics(toUserPublicMetricsResponseDTO(user.getUserPublicMetrics()));
         }
-
-        if (user.getData() != null) {
-            dto.getPublicMetrics().setFollowersCount(user.getUserPublicMetrics().getFollowersCount());
-            dto.getPublicMetrics().setFollowingCount(user.getUserPublicMetrics().getFollowingCount());
-            dto.getPublicMetrics().setTweetCount(user.getUserPublicMetrics().getTweetCount());
-            dto.getPublicMetrics().setListedCount(user.getUserPublicMetrics().getListedCount());
-            dto.getPublicMetrics().setLikeCount(user.getUserPublicMetrics().getLikeCount());
-        }
     }
+
 
     @Mapping(target = "authorId", source = "author.apiId")
     @Mapping(target = "username", source = "author.data.username")

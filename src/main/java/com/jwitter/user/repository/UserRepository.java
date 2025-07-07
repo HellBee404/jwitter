@@ -3,6 +3,7 @@ package com.jwitter.user.repository;
 import com.jwitter.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -10,12 +11,24 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
+
     @Query("SELECT u FROM User u WHERE u.data.username = :username")
-    Optional<User> findByUsername(String username);
+    Optional<User> findByUsername(@Param("username") String username);
+
+    @Query("SELECT u.id FROM User u WHERE u.data.username = :username")
+    Optional<UUID> findIdByUsername(@Param("username") String username);
+
+    @Query("SELECT u FROM User u WHERE u.data.email = :email")
+    Optional<User> findByEmail(@Param("email") String email);
+
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.data.username = :username")
+    boolean existsByUsername(@Param("username") String username);
+
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.data.email = :email")
+    boolean existsByEmail(@Param("email") String email);
 
     @Query("SELECT u FROM User u LEFT JOIN FETCH u.tweets WHERE u.apiId = :apiId")
-    User findByApiIdWithTweets(String apiId);
+    Optional<User> findByApiIdWithTweets(@Param("apiId") String apiId);
 
-    @Query("SELECT u FROM User u LEFT JOIN FETCH u.data.username WHERE u.data.username = :username")
-    boolean existsByDataUsername(String username);
+    Optional<User> findByApiId(String apiId);
 }

@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -25,13 +23,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getData().getUsername(),
-                user.getCredentials().getPasswordHash(),
-                user.isEnabled(),
-                true,
-                true,
-                true,
-                Collections.emptyList());
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getData().getUsername())
+                .password(user.getCredentials().getPasswordHash())
+                .disabled(!user.isEnabled())
+                .accountExpired(false)
+                .accountLocked(false)
+                .credentialsExpired(false)
+                .authorities(user.getRole())
+                .build();
     }
 }

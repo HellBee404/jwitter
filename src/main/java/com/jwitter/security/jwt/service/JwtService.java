@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.jwitter.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +24,7 @@ public class JwtService {
     @Value("${app.jwt.expiration-time}")
     private long EXPIRATION_TIME;
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateTokenByUserDetails(UserDetails userDetails) {
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
 
         log.debug("Generating JWT token for user: {}, expires at: {}",
@@ -31,6 +32,19 @@ public class JwtService {
 
         return JWT.create()
                 .withSubject(userDetails.getUsername())
+                .withIssuedAt(new Date())
+                .withExpiresAt(expirationDate)
+                .sign(Algorithm.HMAC256(SECRET_KEY));
+    }
+
+    public String generateTokenByUser(User user) {
+        Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
+
+        log.debug("Generating JWT token for user: {}, expires at: {}",
+                user.getData().getUsername(), expirationDate);
+
+        return JWT.create()
+                .withSubject(user.getData().getUsername())
                 .withIssuedAt(new Date())
                 .withExpiresAt(expirationDate)
                 .sign(Algorithm.HMAC256(SECRET_KEY));

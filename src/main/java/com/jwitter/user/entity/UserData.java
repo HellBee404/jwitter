@@ -3,6 +3,7 @@ package com.jwitter.user.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -35,6 +36,12 @@ public class UserData {
     @Size(min = 3, max = 15)
     @Column(name = "user_data_username", unique = true, nullable = false, length = 15)
     private String username;
+
+    @NotBlank
+    @Email
+    @Size(max = 255)
+    @Column(name = "user_data_email", unique = true, nullable = false, length = 255)
+    private String email;
 
     @Size(max = 160)
     @Column(name = "user_data_description", length = 160)
